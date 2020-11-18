@@ -1,16 +1,16 @@
 <template>
     <div id="app">
-        <HelloWorld msg="随时随地触碰生活" />
+        <loading />
     </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Loading from './components/Loading.vue'
 
 export default {
     name: 'App',
     components: {
-        HelloWorld
+        Loading
     }
 }
 </script>
