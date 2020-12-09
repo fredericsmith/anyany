@@ -22,6 +22,8 @@ export default {
     bottom: 0;
     left: 0;
     right: 0;
+    z-index: 99999;
+    background-color: #fff;
 }
 @keyframes dance {
     from {

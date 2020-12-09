@@ -9,6 +9,7 @@
     "lint:create": "eslint --init"
   },
   "dependencies": {
+    "chart.js": "^2.9.4",
     "core-js": "^3.6.5",
     "vue": "^2.6.11"
   },
@@ -33,7 +34,9 @@
     "parserOptions": {
       "parser": "babel-eslint"
     },
-    "rules": {}
+    "rules": {
+      "no-unused-vars": "off"
+    }
   },
   "browserslist": [
     "> 1%",
