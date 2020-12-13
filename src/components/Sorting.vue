@@ -6,9 +6,21 @@
             </div>
             <div class="actions-container container">
                 <button v-on:click="fresh">random</button>
-                <button v-on:click="sorting" method="quick">quick sorting</button>
-                <button v-on:click="sorting" method="bubble">bubble sorting</button>
-                <button v-on:click="sorting" method="select">select sorting</button>
+                <button
+                    v-on:click="sorting"
+                    method="quick"
+                    v-bind:disabled="!ableSorting" 
+                >quick sorting</button>
+                <button
+                    v-on:click="sorting"
+                    method="bubble"
+                    v-bind:disabled="!ableSorting"
+                >bubble sorting</button>
+                <button
+                    v-on:click="sorting"
+                    method="select"
+                    v-bind:disabled="!ableSorting"
+                >select sorting</button>
             </div>
         </div>
     </div>
@@ -33,6 +45,7 @@ export default {
     data: function () {
         return {
             chart: [],
+            ableSorting: true,
         };
     },
     mounted: function () {
@@ -89,6 +102,7 @@ export default {
             history.clear();
         },
         sorting: function (event) {
+            this.ableSorting = false;
             var data = this.chart.data.datasets[0].data;
 
             var sortMethod = event.target.getAttribute("method");
@@ -110,6 +124,8 @@ export default {
                     this.chart.update();
 
                     this.showProcess();
+                } else {
+                    this.ableSorting = true;
                 }
             }, 10);
         },
