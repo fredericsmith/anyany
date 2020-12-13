@@ -6,7 +6,8 @@
             </div>
             <div class="actions-container container">
                 <button v-on:click="fresh">random</button>
-                <button v-on:click="quick">quick sorting</button>
+                <button v-on:click="sorting" method="quick">quick sorting</button>
+                <button v-on:click="sorting" method="bubble">bubble sorting</button>
             </div>
         </div>
     </div>
@@ -16,10 +17,11 @@
 import Chart from "chart.js";
 import utils from "@/utils/util.js";
 import History from "@/utils/History.js";
+
 import QuickSorting from "@/utils/QuickSorting.js";
+import BubbleSorting from "@/utils/BubbleSorting.js";
 
 var history = new History(); // 日志记录
-var quickSorting = new QuickSorting(history); // 排序方式
 
 export default {
     name: "Sorting",
@@ -28,7 +30,7 @@ export default {
     },
     data: function () {
         return {
-            "chart": []
+            chart: [],
         };
     },
     mounted: function () {
@@ -40,7 +42,7 @@ export default {
                 labels: defaultData,
                 datasets: [
                     {
-                        label: "# quick sorting",
+                        label: "# data",
                         data: defaultData,
                         backgroundColor: "rgba(0, 204, 255, 0.4)",
                         borderWidth: 0,
@@ -84,10 +86,13 @@ export default {
             this.chart.update();
             history.clear();
         },
-        quick: function (count) {
-            // 快速排序
+        sorting: function (event) {
             var data = this.chart.data.datasets[0].data;
-            quickSorting.sort(data, 0, data.length - 1);
+
+            var sortMethod = event.target.getAttribute("method");
+            var sorting = this._getSorting(sortMethod);
+            sorting.sort(data);
+
             // this.chart.update();
             this.showProcess();
         },
@@ -105,6 +110,16 @@ export default {
                     this.showProcess();
                 }
             }, 10);
+        },
+        _getSorting(sortMethod) {
+            var sorting = null; // 排序方式
+            if (sortMethod == "quick") {
+                sorting = new QuickSorting(history);
+            }
+            if (sortMethod == "bubble") {
+                sorting = new BubbleSorting(history);
+            }
+            return sorting;
         },
     },
 };

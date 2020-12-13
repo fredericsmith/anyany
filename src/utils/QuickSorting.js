@@ -4,8 +4,10 @@ class QuickSorting extends Sorting {
     constructor(history) {
         super(history);
     }
-
-    sort(data, begin, end) {
+    sort(data) {
+        this.quickSorting(data, 0, data.length - 1)
+    }
+    quickSorting(data, begin, end) {
         var left = begin + 1,
             right = end,
             temp;
@@ -36,12 +38,13 @@ class QuickSorting extends Sorting {
                     data[right] = data[begin];
                     data[begin] = temp;
                 }
-                this.sort(data, begin, right - 1);
-                this.sort(data, right + 1, end);
+                this.quickSorting(data, begin, right - 1);
+                this.quickSorting(data, right + 1, end);
             }
         }
 
         this.addHistory([...data]);
     }
+
 }
 export default QuickSorting;
