@@ -8,6 +8,7 @@
                 <button v-on:click="fresh">random</button>
                 <button v-on:click="sorting" method="quick">quick sorting</button>
                 <button v-on:click="sorting" method="bubble">bubble sorting</button>
+                <button v-on:click="sorting" method="select">select sorting</button>
             </div>
         </div>
     </div>
@@ -20,6 +21,7 @@ import History from "@/utils/History.js";
 
 import QuickSorting from "@/utils/QuickSorting.js";
 import BubbleSorting from "@/utils/BubbleSorting.js";
+import SelectSorting from "@/utils/SelectSorting.js";
 
 var history = new History(); // 日志记录
 
@@ -119,6 +121,10 @@ export default {
             if (sortMethod == "bubble") {
                 sorting = new BubbleSorting(history);
             }
+            if (sortMethod == "select") {
+                sorting = new SelectSorting(history);
+            }
+            
             return sorting;
         },
     },
