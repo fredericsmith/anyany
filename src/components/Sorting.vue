@@ -166,7 +166,7 @@ export default {
 
 .sorting {
     flex-grow: 1;
-    width: 500px;
+    width: 200px;
     max-width: 1200px;
     padding: 2rem;
 
@@ -182,20 +182,20 @@ export default {
 }
 .actions-container {
     width: 100%;
-    height: 4rem;
 
     margin: 0.5rem 0;
-
+    padding: .5rem 0;
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     justify-content: space-around;
 }
 
-button {
-    width: 10rem;
-
+button {    
+    flex-grow: 1;
+    flex-basis: 8rem;
     padding: 0.5rem 1rem;
-    margin: 0 0.5rem;
+    margin: 0.5rem 1rem;
 
     border: none;
     border-radius: 6px;
@@ -206,6 +206,7 @@ button {
     transition-duration: 30ms;
     transition-timing-function: ease-out;
 }
+
 button:hover {
     color: #000;
     background-color: #40c6ff;
